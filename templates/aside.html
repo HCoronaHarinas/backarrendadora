@@ -1,0 +1,115 @@
+{% load static %}
+
+<div class="d-flex flex-column flex-shrink-0 p-3  vh-100" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <i class="fa-solid fa-grid-horizontal"></i>
+          <span class="fs-4 fw-bold text-primary">Harinas Elizondo</span>
+        </a>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li>
+            <a href="#option1" class="nav-link" data-bs-toggle="collapse" aria-current="page" role="button" aria-expanded="false" arial-controls="option1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16">
+                <path d="M10 13.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v6zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z"/>
+                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+              </svg>
+              Estado de cuenta
+            </a>
+            <!-- <div class="collapse" id="option1">
+              <div class="col">
+                <ul class="list-group list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-start">option1</li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">option2</li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">option2</li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">option2</li>
+                </ul> -->
+              <!-- </div> -->
+          </li>
+          <li>
+            <a href="#option2" class="nav-link" data-bs-toggle="collapse" aria-current="page" role="button" aria-expanded="false" arial-controls="option2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book-fill" viewBox="0 0 16 16">
+                <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+              </svg>
+              Catalogos
+            </a>
+            <div class="collapse" id="option2">
+              <div class="col">
+                <ul class="list-group list-group-flush">
+            </a>
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/completed_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Propietarios</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/active_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Unidades</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/ended_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Conceptos</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/completed_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Usuarios</p>
+                  </li>
+                </ul>
+              </div>
+          </li>
+          <li>
+            <a href="#option3" class="nav-link" data-bs-toggle="collapse" aria-current="page" role="button" aria-expanded="false" arial-controls="option3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+              Consultas
+            </a>
+            <div class="collapse" id="option3">
+              <div class="col">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/active_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Abonos</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/ended_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Cargos</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/completed_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Tabla de amortización</p>
+                  </li>
+                </ul>
+              </div>
+          </li>
+          <li>
+            <a href="#option4" class="nav-link" data-bs-toggle="collapse" aria-current="page" role="button" aria-expanded="false" arial-controls="option4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pc-display" viewBox="0 0 16 16">
+                <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z"/>
+              </svg>
+              Operativo
+            </a>
+            <div class="collapse" id="option4">
+              <div class="col">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="{% static 'img/ended_circle.svg' %}" alt="" class="px-2">
+                    <p class="m-0">Registro de cargos y abonos</p>
+                  </li>
+                </ul>
+              </div>
+          </li>
+
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Manuel Iriso</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            <li><a class="dropdown-item" href="#">Proximamente</a></li>
+            <li><a class="dropdown-item" href="#">Configuraciones</a></li>
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
