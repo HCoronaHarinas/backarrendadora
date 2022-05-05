@@ -15,7 +15,7 @@ def myfirstview(request):
 
 def mysecondview(request):
     data = {
-        'name': 'Hector',
+        'name': 'juan',
         'productos' : Product.objects.all()
     }
     return render(request, 'propietarios.html', data)
