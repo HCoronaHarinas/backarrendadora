@@ -1,0 +1,60 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrendadora</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+<main class="container-fluid vh-100">
+    <div class="row vh-100">
+        <div class="col-md-6 d-none d-md-block bg-image vh-100">
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="row-cols-3">
+                <div class="col-12">
+                    <img src="{% static 'img/Logo-Icono.png' %}" alt="">
+                </div>
+                <div class="col-12">
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            <div style="color: #842029; background-color: #f8d7da; border-color: #f5c2c7; position: relative;  padding: 1rem 1rem; margin-bottom: 1rem;  border: 1px solid transparent; border-radius: 0.25rem;">
+
+                                    <ul>
+                                       El usuario y/o contraseña son incorrectos
+                                    </ul>
+
+                            </div>
+                              {% endif %}
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo</label>
+                            {{ form.username| add_class:'form-control'| attr:'autocomplete:off'| attr:'placeholder:Ingrese su user name' }}
+                            <div id="emailHelp" class="form-text">No compartas tu email con nadie mas.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            {{ form.password | add_class:'form-control'| attr:'autocomplete:off'| attr:'placeholder:Ingrese su constraseña' }}
+                        </div>
+                        <div class="mb-3">
+                           <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
+<!-- insersion de codigo js -->
+<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</html>

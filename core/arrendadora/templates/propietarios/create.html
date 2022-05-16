@@ -1,0 +1,93 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+    <form method="post" action=".">
+        <div class="row d-flex justify-content-center gap-3 mt-5">
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        <div class="m-3 row">
+                            <h3>Datos generales</h3>
+                            {% if form.errors %}
+                                <div style="color: #842029; background-color: #f8d7da; border-color: #f5c2c7; position: relative;  padding: 1rem 1rem; margin-bottom: 1rem;  border: 1px solid transparent; border-radius: 0.25rem;">
+                                    <ul>
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <a> <strong>ERROR!</strong></a>
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">{{ form.name.label }}</label>
+                                {{ form.name | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1"
+                                       class="form-label">{{ form.first_name.label }}</label>
+                                {{ form.first_name | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1"
+                                       class="form-label">{{ form.second_name.label }}</label>
+                                {{ form.second_name | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">{{ form.apodo.label }}</label>
+                                {{ form.apodo | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">{{ form.curp.label }}*</label>
+                                {{ form.curp | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">{{ form.rfc.label }}</label>
+                                {{ form.rfc | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="exampleInputPassword1" class="form-label">{{ form.mail.label }}*</label>
+                                {{ form.mail | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <h3>Dirección</h3>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label ">{{ form.town.label }}*</label>
+                                {{ form.town | add_class:'form-select' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="exampleInputPassword1" class="form-label">{{ form.cp.label }}*</label>
+                                {{ form.cp | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="street" class="form-label">{{ form.street.label }}*</label>
+                                {{ form.street | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="street" class="form-label">{{ form.colonia.label }}*</label>
+                                {{ form.colonia | add_class:'form-control' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="street" class="form-label">{{ form.status.label }}*</label>
+                                {{ form.status | add_class:'form-select ' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="street" class="form-label">{{ form.number.label }}*</label>
+                                {{ form.number | add_class:'form-select' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="street" class="form-label">{{ form.interior.label }}*</label>
+                                {{ form.interior | add_class:'form-select' | attr:'autocomplete:off' }}
+                            </div>
+                            <button type="submit" class="btn-primary btn-lg">Guardar Registro</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

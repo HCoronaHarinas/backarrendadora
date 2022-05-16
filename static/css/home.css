@@ -1551,6 +1551,20 @@ button:not(:disabled),
   border-radius: 50% !important;
 }
 
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
 @media (min-width: 768px) {
   .d-md-block {
     display: block !important;

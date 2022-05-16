@@ -1,0 +1,45 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <form method="post" action=".">
+        <div class="row d-flex justify-content-center gap-3 mt-5">
+
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        <div class="m-3 row">
+                            <h3>Datos de la Unidad</h3>
+                              {% if form.errors %}
+                            <div style="color: #842029; background-color: #f8d7da; border-color: #f5c2c7; position: relative;  padding: 1rem 1rem; margin-bottom: 1rem;  border: 1px solid transparent; border-radius: 0.25rem;">
+
+                                    <ul>
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <a> <strong>ERROR!</strong></a>
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+
+                            </div>
+                              {% endif %}
+
+                            {% for field in form %}
+                                <div class="mb-3 col-6">
+                                    <label for="exampleInputPassword1" class="form-label">{{ field.label }}</label>
+                                    {{ field | add_class:'form-control' | attr:'autocomplete:off' }}
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn-primary btn-lg">Guardar Registro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+{% endblock %}
