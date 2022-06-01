@@ -109,7 +109,7 @@ class Conceptos(models.Model):
 
 class Register(models.Model):
     owner = models.ForeignKey(Owner,verbose_name='propietario',on_delete=models.CASCADE)
-    #unidad = models.ForeignKey(Unidad,verbose_name='unidad', on_delete=models.CASCADE)
+    unidad = models.ForeignKey(Unidad,verbose_name='unidad', on_delete=models.CASCADE)
     concepto = models.ForeignKey(Conceptos,verbose_name='concepto',on_delete=models.CASCADE)
     tipo = models.ForeignKey(Tipo,verbose_name='tipo',on_delete=models.CASCADE)
     importe = models.PositiveIntegerField(verbose_name='importe', default=0)

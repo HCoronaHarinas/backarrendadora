@@ -302,6 +302,52 @@ class ConceptosDeleteView(DeleteView):
         return context
 
 
+class DatosEstadoCuenta:
+
+    def __init__(self, fecha, concepto, importe, saldo,tipo):
+        self.fecha = fecha
+        self.concepto = concepto
+        self.importe = importe
+        self.saldo = saldo
+        self.tipo = tipo
+
+    def to_dict(self):
+        data = {
+            'fecha': self.fecha,
+            'concepto': self.concepto,
+            'importe': self.importe,
+            'saldo': self.saldo,
+            'tipo': self.tipo,
+        }
+
+        return data
+
+
+class EstadoCuenta(DetailView):
+    model = Register
+    template_name = 'registro/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Estado de cuenta'
+        context['list_url'] = reverse_lazy('arrendadora:propietario_lista')
+        registro = Register.objects.filter(owner_id=self.kwargs.get('pk')).order_by('fecha')
+        owner = Owner.objects.get(pk=self.kwargs.get('pk'))
+        list_objetos = list()
+
+        capital = owner.capital
+        for e in registro:
+            if e.tipo_id == 1:
+                capital = capital + e.importe
+            else:
+                capital = capital - e.importe
+            dato_estado = DatosEstadoCuenta(fecha=e.fecha, concepto=e.concepto, importe= e.importe, saldo=capital, tipo = e.tipo_id)
+            print(dato_estado.importe)
+            list_objetos.append(dato_estado)
+        context['list_objetos'] = list_objetos
+        return context
+
+
 class RegisterListView(ListView):
     model = Register
     template_name = 'registro/list.html'
@@ -310,6 +356,7 @@ class RegisterListView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Estado de cuenta'
         return context
+
 
 class RegisterCreateView(CreateView):
     model = Register
@@ -337,7 +384,6 @@ class RegisterCreateView(CreateView):
         context['title'] = 'Registro de Cargos'
         context['resultado'] = Register.objects.all()
         return context
-
 
 
 class TestView(TemplateView):
@@ -377,7 +423,8 @@ class TestView(TemplateView):
 
 class DatosFactura:
 
-    def __init__(self, mes, mes_num, pago_fijo, capital, intereses, saldo_in, tiie, dif, tasa, interes_real, pago_mensual):
+    def __init__(self, mes, mes_num, pago_fijo, capital, intereses, saldo_in, tiie, dif, tasa, interes_real,
+                 pago_mensual):
         self.mes = mes
         self.mes_num = mes_num
         self.pago_fijo = pago_fijo
@@ -421,8 +468,7 @@ class Factura(DetailView):
         cont = 0
         list_objetos = list()
 
-
-        #Nuevas variables
+        # Nuevas variables
 
         monto_prestamo = unidad.valor
         saldo_in = monto_prestamo
@@ -433,13 +479,15 @@ class Factura(DetailView):
         capital = 0
         plazo = unidad.plazo
         interes = (sobre_tasa + tiie)
-        pago_fijo = round(npf.pmt(interes / 12, plazo, -unidad.valor),2)
+        pago_fijo = round(npf.pmt(interes / 12, plazo, -unidad.valor), 2)
 
-
-        for item in range(0, unidad.plazo+1):
+        for item in range(0, unidad.plazo + 1):
             saldo_in = saldo_in - capital
-            dato_factura = DatosFactura(mes=unidad.date_create, mes_num=cont, pago_fijo=f"${pago_fijo:,.2f}", capital=f"${capital:,.2f}",
-                                        intereses=f"${intereses:,.2f}", saldo_in=f"${saldo_in:,.2f}", tiie=f"%{unidad.tiie:,.2f}", dif=f"%{unidad.tasa:,.2f}", tasa=f"%{intereses:,.2f}",
+            dato_factura = DatosFactura(mes=unidad.date_create, mes_num=cont, pago_fijo=f"${pago_fijo:,.2f}",
+                                        capital=f"${capital:,.2f}",
+                                        intereses=f"${intereses:,.2f}", saldo_in=f"${saldo_in:,.2f}",
+                                        tiie=f"%{unidad.tiie:,.2f}", dif=f"%{unidad.tasa:,.2f}",
+                                        tasa=f"%{intereses:,.2f}",
                                         interes_real=0.02, pago_mensual=pago_fijo)
             list_objetos.append(dato_factura)
             intereses = saldo_in * tasa_mensual
@@ -450,7 +498,6 @@ class Factura(DetailView):
 
 
 class FacturaPdfView(View):
-
 
     def get(self, request, *args, **kwargs):
         unidad = Unidad.objects.get(pk=self.kwargs['pk'])
@@ -469,18 +516,19 @@ class FacturaPdfView(View):
         interes = (sobre_tasa + tiie)
         pago_fijo = round(npf.pmt(interes / 12, plazo, -unidad.valor), 2)
 
-
-        for item in range(0, unidad.plazo+1):
+        for item in range(0, unidad.plazo + 1):
             saldo_in = saldo_in - capital
-            dato_factura = DatosFactura(mes=unidad.date_create, mes_num=cont, pago_fijo=f"${pago_fijo:,.2f}", capital=f"${capital:,.2f}",
-                                        intereses=f"${intereses:,.2f}", saldo_in=f"${saldo_in:,.2f}", tiie=f"%{unidad.tiie:,.2f}", dif=f"%{unidad.tasa:,.2f}", tasa=f"%{intereses:,.2f}",
+            dato_factura = DatosFactura(mes=unidad.date_create, mes_num=cont, pago_fijo=f"${pago_fijo:,.2f}",
+                                        capital=f"${capital:,.2f}",
+                                        intereses=f"${intereses:,.2f}", saldo_in=f"${saldo_in:,.2f}",
+                                        tiie=f"%{unidad.tiie:,.2f}", dif=f"%{unidad.tasa:,.2f}",
+                                        tasa=f"%{intereses:,.2f}",
                                         interes_real=0.02, pago_mensual=pago_fijo)
             list_objetos.append(dato_factura)
             intereses = saldo_in * tasa_mensual
             capital = pago_fijo - intereses
             cont = cont + 1
             list_objetos = list_objetos
-
 
         try:
             template = get_template('unidades/prueba.html')
@@ -499,6 +547,3 @@ class FacturaPdfView(View):
         except:
             pass
         return HttpResponseRedirect(reverse_lazy('arrendadora:unidad_list'))
-
-
-

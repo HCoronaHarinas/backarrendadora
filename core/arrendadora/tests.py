@@ -67,6 +67,9 @@ capital = owner.capital
 cargos = Register.objects.filter(owner_id=1, tipo_id=1)
 abonos = Register.objects.filter(owner_id=1, tipo_id=2)
 
+for e in cargos:
+    print(e.importe)
+
 car_total = 0
 abn_total = 0
 
