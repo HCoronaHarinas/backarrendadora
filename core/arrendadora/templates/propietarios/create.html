@@ -42,21 +42,17 @@
                                 {{ form.apodo | add_class:'form-control' | attr:'autocomplete:off' }}
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="exampleInputPassword1" class="form-label">{{ form.curp.label }}*</label>
-                                {{ form.curp | add_class:'form-control' | attr:'autocomplete:off' }}
-                            </div>
-                            <div class="mb-3 col-6">
                                 <label for="exampleInputPassword1" class="form-label">{{ form.rfc.label }}</label>
                                 {{ form.rfc | add_class:'form-control' | attr:'autocomplete:off' }}
                             </div>
-                            <div class="mb-3 col-12">
+                            <div class="mb-3 col-6">
                                 <label for="exampleInputPassword1" class="form-label">{{ form.mail.label }}*</label>
                                 {{ form.mail | add_class:'form-control' | attr:'autocomplete:off' }}
                             </div>
                             <h3>Dirección</h3>
                             <div class="mb-3 col-6">
-                                <label for="exampleInputPassword1" class="form-label ">{{ form.town.label }}*</label>
-                                {{ form.town | add_class:'form-select' | attr:'autocomplete:off' }}
+                                <label for="exampleInputPassword1" class="form-label ">{{ form.state.label }}*</label>
+                                {{ form.state | add_class:'form-select' | attr:'autocomplete:off' }}
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="exampleInputPassword1" class="form-label">{{ form.cp.label }}*</label>
@@ -67,20 +63,16 @@
                                 {{ form.street | add_class:'form-control' | attr:'autocomplete:off' }}
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="street" class="form-label">{{ form.colonia.label }}*</label>
-                                {{ form.colonia | add_class:'form-control' | attr:'autocomplete:off' }}
-                            </div>
-                            <div class="mb-3 col-6">
-                                <label for="street" class="form-label">{{ form.status.label }}*</label>
-                                {{ form.status | add_class:'form-select ' | attr:'autocomplete:off' }}
-                            </div>
-                            <div class="mb-3 col-6">
                                 <label for="street" class="form-label">{{ form.number.label }}*</label>
                                 {{ form.number | add_class:'form-select' | attr:'autocomplete:off' }}
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="street" class="form-label">{{ form.interior.label }}*</label>
                                 {{ form.interior | add_class:'form-select' | attr:'autocomplete:off' }}
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="street" class="form-label">{{ form.status.label }}*</label>
+                                {{ form.status | add_class:'form-select ' | attr:'autocomplete:off' }}
                             </div>
                             <button type="submit" class="btn-primary btn-lg">Guardar Registro</button>
                         </div>

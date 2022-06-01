@@ -11,8 +11,8 @@ class Status(models.Model):
         return self.name
 
 
-class Town(models.Model):
-    name = models.CharField(max_length=30, unique=True, verbose_name='Alcaldia')
+class State(models.Model):
+    name = models.CharField(max_length=30, unique=True, verbose_name='Estado')
 
     def __str__(self):
         return self.name
@@ -51,18 +51,19 @@ class Owner(models.Model):
     name = models.CharField(max_length=150, verbose_name='Nombre')
     first_name = models.CharField(max_length=30, verbose_name='apellido paterno')
     second_name = models.CharField(max_length=30, verbose_name='apellido materno')
-    apodo = models.CharField(max_length=30, verbose_name='apodo', null=True)
-    curp = models.CharField(max_length=18, verbose_name='curp', unique=True)
+    apodo = models.CharField(max_length=30, verbose_name='apodo', null=True, blank=True)
+  #  curp = models.CharField(max_length=18, verbose_name='curp', unique=True)
     rfc = models.CharField(max_length=13, verbose_name='rfc', unique=True)
-    mail = models.EmailField(verbose_name='correo', unique=True)
-    town = models.ForeignKey(Town, on_delete=models.CASCADE)
+    mail = models.EmailField(verbose_name='correo', unique=True, null=True, blank=True)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
     cp = models.PositiveIntegerField(verbose_name='cp')
     street = models.CharField(max_length=200, verbose_name='calle')
-    colonia = models.ForeignKey(Colonia, on_delete=models.CASCADE)
     number = models.PositiveIntegerField(verbose_name='numero', unique=True)
-    interior = models.PositiveIntegerField(verbose_name='interior', null=True)
+    interior = models.PositiveIntegerField(verbose_name='interior', null=True,blank=True)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
-#    unidad = models.ForeignKey(Unidad,blank=True, on_delete=models.CASCADE)
+    date_create = models.DateField(auto_now=True)
+    date_update = models.DateField(auto_now_add=True)
+    capital = models.DecimalField(verbose_name='capital', max_digits=9, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -71,22 +72,24 @@ class Owner(models.Model):
         ordering = ['id']
 
 
-
-
-
 class Unidad(models.Model):
-    placas = models.CharField(max_length=50, verbose_name='Placas')
-    year = models.ForeignKey(Modelo, on_delete=models.CASCADE)
-    marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
-    submarca = models.ForeignKey(Submarca, on_delete=models.CASCADE)
+    Numero = models.PositiveIntegerField(unique=True,verbose_name='Numero de unidad')
+   # placas = models.CharField(max_length=50, verbose_name='Placas')
+   # year = models.ForeignKey(Modelo, on_delete=models.CASCADE)
+   # marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
+   # submarca = models.ForeignKey(Submarca, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     propietario = models.ForeignKey(Owner,on_delete=models.CASCADE)
-    valor = models.PositiveIntegerField(verbose_name='Valor')
+    valor = models.FloatField(verbose_name='Valor Factura')
     tasa = models.PositiveIntegerField(verbose_name='Tasa')
     plazo = models.PositiveIntegerField(verbose_name='Plazo')
+    tiie = models.FloatField(verbose_name='TIIE')
+    date_create = models.DateField(auto_now=True)
+    date_update = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.placas
+        return str(self.Numero)
+
 
 
 class Tipo(models.Model):
@@ -105,16 +108,16 @@ class Conceptos(models.Model):
 
 
 class Register(models.Model):
-    unidad = models.ForeignKey(Unidad,verbose_name='unidad', on_delete=models.CASCADE)
+    owner = models.ForeignKey(Owner,verbose_name='propietario',on_delete=models.CASCADE)
+    #unidad = models.ForeignKey(Unidad,verbose_name='unidad', on_delete=models.CASCADE)
     concepto = models.ForeignKey(Conceptos,verbose_name='concepto',on_delete=models.CASCADE)
     tipo = models.ForeignKey(Tipo,verbose_name='tipo',on_delete=models.CASCADE)
-    owner = models.ForeignKey(Owner,verbose_name='propietario',on_delete=models.CASCADE)
     importe = models.PositiveIntegerField(verbose_name='importe', default=0)
     fecha = models.DateField(auto_now=True, verbose_name='fecha')
-
+    date_update = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return 'Registro'
+        return str(self.unidad)
 
 
 class AccountStatus(models.Model):

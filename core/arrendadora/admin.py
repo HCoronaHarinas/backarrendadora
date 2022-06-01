@@ -7,7 +7,7 @@ from core.arrendadora.models import *
 
 admin.site.register(Owner)
 admin.site.register(Status)
-admin.site.register(Town)
+admin.site.register(State)
 admin.site.register(Colonia)
 admin.site.register(Modelo)
 admin.site.register(Marca)

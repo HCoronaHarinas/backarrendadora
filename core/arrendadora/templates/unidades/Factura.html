@@ -1,0 +1,61 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="row d-flex justify-content-center gap-3 mt-5">
+
+        <div class="col-9">
+        <div class="col-12 py-5 my-0">
+                        <a href="{% url 'arrendadora:factura_pdf' object.id %}" class="btn btn-primary btn-lg">Generar
+                            PDF</a>
+                    </div>
+            <div class="card">
+                <div class="card row p">
+                    <div class="col-12 p-5 my-0 bg-primary"><h3
+                            class="text-light"> {{ object.propietario.name }} {{ object.propietario.first_name }} {{ object.propietario.second_name }}
+                    </h3>
+                    </div>
+                    <div class="col-12 p-5 my-0">
+                        <div class="row">
+                            <div class="px-5 col-6"><h4>Numero de unidad:</h4><h5>{{ object.Numero }}</h5></div>
+                            <div class="px-5 col-6"><h4>Monto del Prestamo:</h4><h5>$ {{ object.valor }}</h5></div>
+                            <div class="px-5 col-6"><h4>Tasa Final:</h4><h5>%{{ object.tasa }}</h5></div>
+                            <div class="px-5 col-6"><h4>Plazo:</h4><h5>{{ object.plazo }} meses</h5></div>
+
+                            <div class="container mt-3">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Num</th>
+                                        <th>Pago fijo</th>
+                                        <th>Capital</th>
+                                        <th>intereses</th>
+                                        <th>saldo insoluto</th>
+                                        <th>TIIE</th>
+                                        <th>DIF</th>
+                                    </tr>
+                                    </thead>
+                                    {% for list_objeto in list_objetos %}
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ list_objeto.mes_num }}</td>
+                                            <td>{{ list_objeto.pago_fijo }}</td>
+                                            <td>{{ list_objeto.capital }}</td>
+                                            <td>{{ list_objeto.intereses }}</td>
+                                            <td>{{ list_objeto.saldo_in }}</td>
+                                            <td>{{ list_objeto.tiie }}</td>
+                                            <td>{{ list_objeto.dif }}</td>
+                                        </tr>
+                                        </tbody>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

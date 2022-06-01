@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import *
 
 from core.arrendadora.models import *
 
@@ -16,9 +16,9 @@ class OwnerForm(ModelForm):
         fields = '__all__'
         labels = {
             'name': 'Nombre*',
-            'desc': 'Descripcion',
-            'desc': 'Descripcion',
-            'desc': 'Descripcion'
+            'state': 'Estado',
+            'number': 'Numero Exterior*',
+            'interior': 'Numero Interior'
         }
 
 
@@ -72,3 +72,11 @@ class RegisterForm(ModelForm):
             'year': 'Año'
         }
 
+class TestForm(Form):
+    tipo = ModelChoiceField(queryset=Tipo.objects.all(), widget=Select(attrs={
+        'class': 'form-control select2'
+    }))
+
+    concepto = ModelChoiceField(queryset=Conceptos.objects.none(), widget=Select(attrs={
+        'class': 'form-control select2'
+    }))

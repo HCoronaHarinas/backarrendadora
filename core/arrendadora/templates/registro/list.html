@@ -7,17 +7,7 @@
         <div class="col-9">
 
             <div class="row">
-                {% for foo in unidad %}
-                    <div class="col-12 my-4">
-                    <h3>Numero de plazos: {{ foo.plazo }}</h3>
-                </div>
-                <div class="col-6 my-4">
-                    <h3>Valor factura :${{ foo.valor }}</h3>
-                </div>
-                <div class="col-6 my-4">
-                    <h3>Tasa: %{{ foo.tasa }}</h3>
-                </div>
-                {% endfor %}
+               {{ Hector }}
             </div>
                 <div class="card">
                 <div class="card-body">
@@ -25,23 +15,26 @@
                 <thead class="table">
 
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Placas</th>
-                    <th scope="col">Concepto</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Importe</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Cargos</th>
+                    <th scope="col">Abonos</th>
+                    <th scope="col">Saldo</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for c in object_list %}
                 <tr>
-                    <td>{{ c.id }}</td>
-                    <td>{{ c.unidad }}</td>
-                    <td>{{ c.concepto }}</td>
-                    <td>{{ c.tipo }}</td>
-                    <td>{{ c.importe }}</td>
                     <td>{{ c.fecha }}</td>
+                    <td>{{ c.concepto }}</td>
+                    {% if c.tipo_id == 1 %}
+                        <td>{{ c.importe }}</td>
+                    {% endif %}
+                    {% if c.tipo_id == 2 %}
+                        <td>{{ c.importe }}</td>
+                    {% endif %}
+                    <td>{{ c.importe }}</td>
+                    <td>{{ 1000 }}</td>
                 </tr>
             {% endfor %}
 

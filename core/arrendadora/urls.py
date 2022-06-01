@@ -20,6 +20,9 @@ urlpatterns = [
     path('conceptos/delete/<int:pk>/', ConceptosDeleteView.as_view(), name='conceptos_delete'),
     path('registro/list/', RegisterListView.as_view(), name='registro_list'),
     path('registro/add/', RegisterCreateView.as_view(), name='registro_add'),
+    path('test/', TestView.as_view(), name='test'),
+    path('unidad/view/<int:pk>/', Factura.as_view(), name='factura'),
+    path('unidad/pdf/<int:pk>/', FacturaPdfView.as_view(), name='factura_pdf'),
   #  path('unidad/usuario/<int:pk>/', filtrado_list, name='unidad filtrado'),
 
 ]

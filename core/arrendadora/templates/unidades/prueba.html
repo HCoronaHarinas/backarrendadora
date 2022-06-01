@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 2px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #152C70;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #152C70;
+        color: white;
+    }
+
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+        background: #152C70;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+
+</style>
+<body>
+<div class="head">
+    <h1 style="color: white"><b>Fabrica de Harinas Elizondo Arrendadora</b></h1>
+</div>
+<div>
+    <h1 style="text-align: ">Nombre del
+        Propietario: {{ object.propietario.name }} {{ object.propietario.first_name }} {{ object.propietario.second_name }}</h1>
+</div>
+<div class="cr">
+    <div><h2>Numero de unidad: {{ object.Numero }}</h2></div>
+    <div><h2>Valor de la unidad:{{ object.valor }}</h2></div>
+    <div><h2>Plazo: {{ object.plazo }} Meses</h2></div>
+    <div><h2>Tasa de interes: {{ object.tasa }}%</h2></div>
+</div>
+
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Num</th>
+        <th>Pago fijo</th>
+        <th>Capital</th>
+        <th>intereses</th>
+        <th>saldo insoluto</th>
+        <th>TIIE</th>
+        <th>DIF</th>
+    </tr>
+    </thead>
+    {% for list_objeto in list_objetos %}
+        <tbody>
+        <tr>
+            <td>{{ list_objeto.mes_num }}</td>
+            <td>{{ list_objeto.pago_fijo }}</td>
+            <td>{{ list_objeto.capital }}</td>
+            <td>{{ list_objeto.intereses }}</td>
+            <td>{{ list_objeto.saldo_in }}</td>
+            <td>{{ list_objeto.tiie }}</td>
+            <td>{{ list_objeto.dif }}</td>
+        </tr>
+        </tbody>
+    {% endfor %}
+</table>
+</body>
+</html>

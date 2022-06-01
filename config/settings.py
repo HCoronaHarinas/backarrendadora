@@ -132,7 +132,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_REDIRECT_URL = '/erp/categoria/list/'
+LOGIN_REDIRECT_URL = '/arrendadora/owner/list/'
 
 LOGOUT_REDIRECT_URL = '/login/'
 
