@@ -61,30 +61,9 @@ from core.arrendadora.models import *
 #name.save()
 
 #print(name.capital)
-owner = Owner.objects.get(id=1)
-capital = owner.capital
 
-cargos = Register.objects.filter(owner_id=1, tipo_id=1)
-abonos = Register.objects.filter(owner_id=1, tipo_id=2)
+fecha_in = Register.objects.filter(tipo_id=1)
 
-for e in cargos:
-    print(e.importe)
-
-car_total = 0
-abn_total = 0
-
-for e in cargos:
-    car_total = car_total + e.importe
-
-for e in abonos:
-    abn_total = abn_total - e.importe
-
-print(abn_total)
-print(car_total)
-
-capital = capital + abn_total + car_total
-
-print(capital)
-
+print(fecha_in)
 
 

@@ -13,6 +13,7 @@ admin.site.register(Modelo)
 admin.site.register(Marca)
 admin.site.register(Submarca)
 admin.site.register(Tipo)
+admin.site.register(Conceptos)
 admin.site.register(Unidad)
 admin.site.register(Register)
 

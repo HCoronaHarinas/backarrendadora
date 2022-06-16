@@ -22,4 +22,5 @@ urlpatterns = [
     path('erp/',include('core.erp.urls')),
     path('arrendadora/',include('core.arrendadora.urls')),
     path('login/',include('core.login.urls')),
+    path('reports/',include('core.reports.urls')),
 ]

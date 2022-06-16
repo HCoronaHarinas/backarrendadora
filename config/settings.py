@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     #APPS
     'core.arrendadora',
     'core.erp',
-    'core.login'
+    'core.login',
+    'core.reports',
 ]
 
 MIDDLEWARE = [

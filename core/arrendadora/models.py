@@ -94,7 +94,6 @@ class Unidad(models.Model):
 
 class Tipo(models.Model):
     name = models.CharField(max_length=100, verbose_name='Tipo')
-
     def __str__(self):
         return self.name
 
@@ -109,16 +108,16 @@ class Conceptos(models.Model):
 
 class Register(models.Model):
     owner = models.ForeignKey(Owner,verbose_name='propietario',on_delete=models.CASCADE)
-    unidad = models.ForeignKey(Unidad,verbose_name='unidad', on_delete=models.CASCADE)
     concepto = models.ForeignKey(Conceptos,verbose_name='concepto',on_delete=models.CASCADE)
     tipo = models.ForeignKey(Tipo,verbose_name='tipo',on_delete=models.CASCADE)
     importe = models.PositiveIntegerField(verbose_name='importe', default=0)
+    referencia = models.CharField(max_length=100,verbose_name='referencia',null=True,blank=True)
+    comentarios = models.TextField(max_length=100,verbose_name='comentario', null=True , blank=True)
     fecha = models.DateField(auto_now=True, verbose_name='fecha')
     date_update = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.unidad)
-
+        return str(self.concepto)
 
 class AccountStatus(models.Model):
     owner = models.ForeignKey(Owner,on_delete=models.CASCADE)
