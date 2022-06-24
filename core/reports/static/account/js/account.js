@@ -3,6 +3,7 @@ var date_range = null;
 var date_now = moment().format('DD-MM-YYYY')
 
 function generate_report() {
+
     var parameters = {
         'action': 'search_report',
         'start_date': '2022-06-02',
@@ -25,8 +26,73 @@ function generate_report() {
             data: parameters,
             dataSrc: ""
         },
-        initComplete: function (settings, json) {
-        }
+        order: false,
+        padding: false,
+        ordering: true,
+        info: true,
+        searching: false,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Descargar Excel <i class="fas fa-file-excel"></i>',
+                titleAttr: 'Excel',
+                className: 'btn btn-primary btn-flat btn-xs'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: 'Descargar Pdf <i class="fas fa-file-pdf"></i>',
+                titleAttr: 'PDF',
+                className: 'btn btn-danger btn-flat btn-xs',
+                download: 'open',
+                orientation: 'portrait',
+                customize: function (doc) {
+                    doc.styles = {
+                        header: {
+                            fontSize: 28,
+                            bold: true,
+                            alignment: 'center'
+                        },
+                        subheader: {
+                            fontSize: 13,
+                            bold: true
+                        },
+                        quote: {
+                            italics: true
+                        },
+                        small: {
+                            fontSize: 18
+                        },
+                        tableHeader: {
+                            bold: true,
+                            fontSize: 11,
+                            color: 'white',
+                            fillColor: '#2d4154',
+                            alignment: 'center'
+                        }
+                    };
+                    doc.content[1].table.widths = ['10%', '45%', '15%', '15%', '15%'];
+                    doc.content[1].margin = [0, 100, 0, 0];
+                    doc.content[1].layout = {};
+                    doc['footer'] = (function (page, pages) {
+                        return {
+                            columns: [
+                                {
+                                    alignment: 'left',
+                                    text: ['Fecha de creación: ', {text: date_now}]
+                                },
+                                {
+                                    alignment: 'right',
+                                    text: ['página ', {text: page.toString()}, ' de ', {text: pages.toString()}]
+                                }
+                            ],
+                            margin: 20
+                        }
+                    });
+
+                }
+            }
+        ],
     });
 }
 
@@ -49,7 +115,5 @@ $(function () {
     });
 
 });
-
-
 
 

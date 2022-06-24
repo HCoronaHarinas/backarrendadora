@@ -2,7 +2,12 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block head_list %}
+    <!--   Libreria  del data picker -->
     <link rel="stylesheet" type="text/css" href="{% static 'libs/daterangepicker-master/daterangepicker.css' %}"/>
+
+    <!--   Libreria  del dataTable butttons -->
+
+
 {% endblock %}
 {% block content %}
     <div class="row d-flex justify-content-center gap-3 mt-5">
@@ -16,10 +21,6 @@
                     </div>
                     <hr>
                 </div>
-                <div class="col-6 my-4">
-                    <a class="btn btn-primary btn-lg btnTest" href="{% url 'arrendadora:unidad_create' %}">Imprimir
-                        Estado de cuenta</a>
-                </div>
             </div>
 
 
@@ -30,9 +31,10 @@
                         <thead class="table">
                         <tr>
                             <th scope="col">Fecha</th>
+                            <th scope="col">Referencia</th>
                             <th scope="col">Concepto</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Monto</th>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">Abono</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,9 +49,11 @@
 {% endblock %}
 
 {% block javascript %}
+
     <script type="text/javascript" src="{% static 'libs/daterangepicker-master/moment.min.js' %}"></script>
+    <script src="{% static 'account/js/account.js' %}"></script>
     <script type="text/javascript" src="{% static 'libs/daterangepicker-master/spanish.js' %}"></script>
     <script type="text/javascript" src="{% static 'libs/daterangepicker-master/daterangepicker.js' %}"></script>
-    <script src="{% static 'account/js/account.js' %}"></script>
+
 {% endblock %}
 
