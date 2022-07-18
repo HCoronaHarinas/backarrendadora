@@ -304,7 +304,7 @@ class ConceptosDeleteView(DeleteView):
 
 class DatosEstadoCuenta:
 
-    def __init__(self, fecha, concepto, importe, saldo,tipo):
+    def __init__(self, fecha, concepto, importe, saldo, tipo):
         self.fecha = fecha
         self.concepto = concepto
         self.importe = importe
@@ -335,22 +335,23 @@ class EstadoCuenta(DetailView):
         owner = Owner.objects.get(pk=self.kwargs.get('pk'))
         list_objetos = list()
         capital = owner.capital
-        saldo_actual= capital
+        saldo_actual = capital
         for e in registro:
             if e.tipo_id == 1:
                 saldo_actual = saldo_actual - e.importe
             else:
                 saldo_actual = saldo_actual + e.importe
-            dato_estado = DatosEstadoCuenta(fecha=e.fecha, concepto=e.concepto, importe=f"${e.importe:,.2f}", saldo=f"${saldo_actual:,.2f}", tipo = e.tipo_id)
+            dato_estado = DatosEstadoCuenta(fecha=e.fecha, concepto=e.concepto, importe=f"${e.importe:,.2f}",
+                                            saldo=f"${saldo_actual:,.2f}", tipo=e.tipo_id)
             list_objetos.append(dato_estado)
         saldo_final = saldo_actual
-        num_cargos = Register.objects.filter(owner_id=self.kwargs.get('pk'),tipo_id=1).count()
-        num_abonos = Register.objects.filter(owner_id=self.kwargs.get('pk'),tipo_id=2).count()
+        num_cargos = Register.objects.filter(owner_id=self.kwargs.get('pk'), tipo_id=1).count()
+        num_abonos = Register.objects.filter(owner_id=self.kwargs.get('pk'), tipo_id=2).count()
         context['list_objetos'] = list_objetos
         context['owner'] = owner
         context['saldofin'] = f"${saldo_final:,.2f}"
-        context['numabon'] =  num_abonos
-        context['numcar'] =  num_cargos
+        context['numabon'] = num_abonos
+        context['numcar'] = num_cargos
         return context
 
 
@@ -553,4 +554,3 @@ class FacturaPdfView(View):
         except:
             pass
         return HttpResponseRedirect(reverse_lazy('arrendadora:unidad_list'))
-

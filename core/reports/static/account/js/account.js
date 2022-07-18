@@ -34,12 +34,6 @@ function generate_report() {
         dom: 'Bfrtip',
         buttons: [
             {
-                extend: 'excelHtml5',
-                text: 'Descargar Excel <i class="fas fa-file-excel"></i>',
-                titleAttr: 'Excel',
-                className: 'btn btn-primary btn-flat btn-xs'
-            },
-            {
                 extend: 'pdfHtml5',
                 text: 'Descargar Pdf <i class="fas fa-file-pdf"></i>',
                 titleAttr: 'PDF',

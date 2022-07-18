@@ -1,0 +1,63 @@
+body {
+    font-family: Poppins;
+    font-size: 12px;
+}
+
+
+table, td, th {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+    border-color: #4b4b4b;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.title:first-child {
+    background: #212196;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    padding: 30px;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+.title h1, p, h2 {
+    color: #ffffff;
+}
+
+@page {
+    @bottom-right {
+        background: #212196;
+        color: white;
+        content: counter(page) "      de      " counter(pages);
+        height: 1cm;
+        text-align: center;
+        width: 5cm;
+    }
+}
+
+.rect {
+    position: absolute;
+    height: 5px;
+    left: 0%;
+    right: 0%;
+    top: 60px;
+    background: #212196;
+}
+
+.contenido {
+    position: absolute;
+    top: 130px;
+}
+
+.rango{
+    position: absolute;
+    top: 3px;
+    left: 30%;
+}

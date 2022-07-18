@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
+
 import config.db as db
 from pathlib import Path
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
 
     #LIBS
     'widget_tweaks',
+    'import_export',
     
     #APPS
     'core.arrendadora',
@@ -123,6 +126,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -138,3 +143,4 @@ LOGIN_REDIRECT_URL = '/arrendadora/owner/list/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 LOGIN_URL = '/login/'
+

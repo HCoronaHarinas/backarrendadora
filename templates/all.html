@@ -1,10 +1,64 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-$END$
+<div>
+    <div class="rect"></div>
+    <div class="rango">
+        <h1>Harinas Elizondo</h1>
+        <img src="{% static 'img/logopdf.png' %}">
+    </div>
+    <div class="contenido">
+        <div class="title">
+            <div>
+                <p>12/04/2022 al 20/05/2022</p>
+                <p>Total de entradas: 12 </p>
+                <p>Total de salidas: 5 </p>
+                <p>Saldo final: $ 1,311,203 </p>
+            </div>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Concepto</th>
+                <th>Referencia</th>
+                <th>Cargo</th>
+                <th>Abono</th>
+            </tr>
+            </thead>
+            {% for object in object_list %}
+                <tbody>
+                <tr>
+                    <td>{{ object.fecha }}</td>
+                    <td>{{ object.concepto }}</td>
+                    {% if object.referencia == null %}
+                        <td>Sin Referencias</td>
+                    {% else %}
+                        <td>{{ object.referencia }}</td>
+                    {% endif %}
+                    {% if object.tipo_id == 1 %}
+                        <td>{{ object.importe }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    {% if object.tipo_id == 2 %}
+                        <td>{{ object.importe }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 </body>
 </html>
+
